@@ -12,6 +12,8 @@ miniterm.py /dev/ttyUSB1 74880
 
 
 
+1. nodemcu-dev-11-modules-2017-03-11-22-16-21-float.bin (1-Wire)
+    1. adc, file, gpio, http, net, node, ow, pwm, tmr, uart, wifi
 1. nodemcu-dev-9-modules-2016-10-10-05-22-36-float.bin
     1. adc, dht, file, gpio, net, node, tmr, uart, wifi
 1. nodemcu-dev-8-modules-2016-12-30-06-18-47-float.bin  (Small MQTT bin)

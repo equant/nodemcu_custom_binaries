@@ -1,0 +1,34 @@
+#! /bin/sh
+
+# Usage: ./sync; ./sync -f (force sync of all files)
+# NB: Use this to avoid checking in timestamp file:
+#   echo '.SYNC-STATE' >> .gitignore
+
+dev=$(/bin/ls -t1 /dev/ttyUSB* | head -n 1)
+state=.SYNC-STATE
+force=0
+
+if [ $# -gt 0 -a "$1" = "-f" ]; then
+    shift
+    force=1
+fi
+
+if [ $# -gt 0 ]; then
+    force=1
+else
+    set *.lua
+fi
+
+for f in "$@"; do
+    if [ $force -eq 0 -a -r $state -a $f -ot $state ]; then
+        echo "Skipping $f"
+        continue
+    fi
+
+    luatool.py --port $dev -b 115200 --src $f || {
+        echo "Failed running luatool.py" >&2
+        exit 3
+    }
+done
+
+touch $state
