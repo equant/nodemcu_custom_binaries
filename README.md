@@ -18,6 +18,7 @@ These binaries are from <https://nodemcu-build.com/> or ones that have been foun
     * nodemcu-dev-7-modules-2016-09-13-06-51-00-float.bin
     * nodemcu_float_0.9.6-dev_20150704.bin
 1. non-nodemcu binaries
+    * esp_init_data_default.bin
     * v1111ATFirmware.bin
 
 ## Everything below here are random notes
@@ -48,3 +49,15 @@ esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x0
 mosquitto_pub -t /home/1/bugzapper -m "ON"
 mosquitto_pub -t /home/1/bugzapper -m "OFF"
 ```
+#### March 2017 Session
+It seems like we need to flash devkit devices with v1111ATFirmware.bin before the device will accept a nodemcu binary.  So for a new devkit device, it goes something like this...
+```
+esptool.py --port /dev/ttyUSB2 write_flash --flash_mode dio --flash_size 32m 0x0 v1111ATFirmware.bin
+esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x00000 nodemcu-master-7-modules-2016-09-01-04-30-49-float.bin 0x3fc000 esp_init_data_default.bin
+miniterm.py /dev/ttyUSB2 115200
+```
+... then ...
+1. reset the device
+1. watch it create it's file system
+1. escape out when done
+1. Copy init.lua to the device via luatool (or sync) so that it doesn't enter a tight bricked loop of looking for the init.lua script.
