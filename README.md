@@ -1,3 +1,9 @@
+## sync
+
+This is used to make copying a directory of lua files to the ESP8266.  Requires luatool.py.  Make sure luatool.py is in your path.
+
+## Everything below here are random notes...
+
 miniterm.py /dev/ttyUSB1 74880
 
 ## Binaries
