@@ -7,6 +7,9 @@ This shell script makes copying a directory of lua files to the ESP8266 easier/f
 These binaries are from <https://nodemcu-build.com/> or ones that have been found on the internet.  These are here for our convenience (and in case the service dies, or we can't wait).  It's probably best to use the above service to build your own newer versions to suit your needs as these may contain bugs (most are dev versions).
 
 1. nodemcu binaries and the libraries they include...
+    * nodemcu-dev-15-modules-2017-04-08-22-29-17-float.bin
+        * adc, bit, enduser_setup, file, gpio, http, net, node, ow, rotary, spi, tmr, u8g, uart, wifi
+        * u86: 128x128
     * nodemcu-dev-11-modules-2017-03-11-22-16-21-float.bin (1-Wire)
         * adc, file, gpio, http, net, node, ow, pwm, tmr, uart, wifi
     * nodemcu-dev-9-modules-2016-10-10-05-22-36-float.bin
