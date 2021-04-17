@@ -7,6 +7,8 @@ This shell script makes copying a directory of lua files to the ESP8266 easier/f
 These binaries are from <https://nodemcu-build.com/> or ones that have been found on the internet.  These are here for our convenience (and in case the service dies, or we can't wait).  It's probably best to use the above service to build your own newer versions to suit your needs as these may contain bugs (most are dev versions).
 
 1. nodemcu binaries and the libraries they include...
+    * nodemcu-master-10-modules-2020-06-14-00-38-48-float.bin
+        * adc, file, gpio, i2c, net, node, tmr, u8g2, uart, wifi
     * nodemcu-dev-15-modules-2017-04-08-22-29-17-float.bin
         * adc, bit, enduser_setup, file, gpio, http, net, node, ow, rotary, spi, tmr, u8g, uart, wifi
         * u86: 128x128
@@ -64,3 +66,9 @@ miniterm.py /dev/ttyUSB2 115200
 1. watch it create it's file system
 1. escape out when done
 1. Copy init.lua to the device via luatool (or sync) so that it doesn't enter a tight bricked loop of looking for the init.lua script.
+
+#### June 2020
+
+```
+esptool.py --port /dev/ttyUSB0 write_flash --flash_mode dio --flash_size 32m 0x00000 nodemcu-master-10-modules-2020-06-14-00-38-48-float.bin 0x3fc000 esp_init_data_default.bin
+```
